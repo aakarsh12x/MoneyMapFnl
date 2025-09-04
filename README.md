@@ -1,4 +1,4 @@
-# 💰 MoneyMap — AI-Powered Expense Tracker
+MoneyMap — AI-Powered Expense And Investment Tracker
 
 MoneyMap is a modern expense tracking web app built with **Next.js**, designed to simplify personal finance management with the help of **AI insights**, a **responsive UI**, and secure authentication.
 
