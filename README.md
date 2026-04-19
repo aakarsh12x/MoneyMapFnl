@@ -23,3 +23,42 @@ MoneyMap is a modern expense tracking web app built with **Next.js**, designed t
 cd moneymap
 npm install
 npm run dev
+
+
+---
+
+##
+
+---
+
+## System Design
+
+```mermaid
+graph TB
+    subgraph Client["Client Layer (Next.js + React)"]
+        DASH[Expense Dashboard\nCharts & Trends]
+        TXN[Transaction Manager\nAdd Income / Expenses]
+        AI_UI[AI Advisor UI\nInsights & Recommendations]
+    end
+
+    subgraph Backend["Backend (Supabase + Drizzle ORM)"]
+        SBAUTH[Supabase Auth\nUser Sessions]
+        SBDB[(Supabase PostgreSQL\nTransactions & Budgets)]
+        DRIZZLE[Drizzle ORM\nType-Safe Queries]
+        BUDGET[Budgeting Engine\nLimit Tracking]
+    end
+
+    subgraph AI["AI Layer"]
+        GEMINI[Gemini API\nSpending Analysis & Tips]
+    end
+
+    DASH -->|Fetch History| DRIZZLE
+    TXN -->|Log Transaction| DRIZZLE
+    AI_UI -->|Request Insights| GEMINI
+    DRIZZLE -->|Read/Write| SBDB
+    SBDB -->|Real-time Updates| DASH
+    SBAUTH -->|Auth Token| DRIZZLE
+    BUDGET -->|Check Limits| SBDB
+    SBDB -->|Transaction History| GEMINI
+    GEMINI -->|Personalized Tips| AI_UI
+```
